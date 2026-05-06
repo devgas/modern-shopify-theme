@@ -4,7 +4,7 @@
       {%- if section.settings.image != blank -%}
         {{ section.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '700, 1000, 1400' }}
       {%- else -%}
-        {{ 'hero-lifestyle-banner.png' | asset_url | image_tag: loading: 'lazy' }}
+        <img src="{{ 'hero-lifestyle-banner.png' | asset_url }}" alt="" width="1774" height="887" loading="lazy">
       {%- endif -%}
     </div>
     <div class="image-with-text__text">

@@ -25,7 +25,7 @@
               {%- else -%}
                 {%- assign fallback_image = 'product-leather-notebook.png' -%}
             {%- endcase -%}
-            {{ fallback_image | asset_url | image_tag: loading: 'lazy' }}
+            <img src="{{ fallback_image | asset_url }}" alt="{{ collection.title | default: block.settings.heading | escape }}" width="1254" height="1254" loading="lazy">
           {%- endif -%}
           <div class="collection-card__content">
             <h3>{{ collection.title | default: block.settings.heading }}</h3>

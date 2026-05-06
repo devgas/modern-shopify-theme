@@ -38,7 +38,7 @@
           {%- endcase -%}
           <article class="product-card">
             <div class="product-card__media">
-              {{ image | asset_url | image_tag: loading: 'lazy' }}
+              <img src="{{ image | asset_url }}" alt="{{ demo_title | escape }}" width="1254" height="1254" loading="lazy">
             </div>
             <div class="product-card__body">
               <span class="product-card__title">{{ demo_title }}</span>

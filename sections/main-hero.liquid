@@ -3,7 +3,7 @@
     {%- if section.settings.image != blank -%}
       {{ section.settings.image | image_url: width: 2400 | image_tag: loading: 'eager', sizes: '100vw', widths: '900, 1400, 1800, 2400' }}
     {%- else -%}
-      {{ 'hero-lifestyle-banner.png' | asset_url | image_tag: loading: 'eager', sizes: '100vw' }}
+      <img src="{{ 'hero-lifestyle-banner.png' | asset_url }}" alt="" width="1774" height="887" loading="eager">
     {%- endif -%}
   </div>
   <div class="hero__content page-width">
