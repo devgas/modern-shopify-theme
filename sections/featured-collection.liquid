@@ -21,17 +21,28 @@
         {%- endfor -%}
       {%- else -%}
         {%- assign demo_images = 'product-knit-sweater.png,product-amber-bottle.png,product-ceramic-mug.png,product-leather-notebook.png' | split: ',' -%}
-        {%- assign demo_titles = 'Ribbed knit sweater,Amber hand wash,Ceramic coffee mug,Leather notebook' | split: ',' -%}
-        {%- assign demo_prices = '$128.00,$34.00,$28.00,$74.00' | split: ',' -%}
         {%- for image in demo_images -%}
-          {%- assign index = forloop.index0 -%}
+          {%- case forloop.index -%}
+            {%- when 1 -%}
+              {%- assign demo_title = 'Ribbed knit sweater' -%}
+              {%- assign demo_price = '$128.00' -%}
+            {%- when 2 -%}
+              {%- assign demo_title = 'Amber hand wash' -%}
+              {%- assign demo_price = '$34.00' -%}
+            {%- when 3 -%}
+              {%- assign demo_title = 'Ceramic coffee mug' -%}
+              {%- assign demo_price = '$28.00' -%}
+            {%- else -%}
+              {%- assign demo_title = 'Leather notebook' -%}
+              {%- assign demo_price = '$74.00' -%}
+          {%- endcase -%}
           <article class="product-card">
             <div class="product-card__media">
               {{ image | asset_url | image_tag: loading: 'lazy' }}
             </div>
             <div class="product-card__body">
-              <span class="product-card__title">{{ demo_titles[index] }}</span>
-              <span class="price">{{ demo_prices[index] }}</span>
+              <span class="product-card__title">{{ demo_title }}</span>
+              <span class="price">{{ demo_price }}</span>
             </div>
           </article>
         {%- endfor -%}

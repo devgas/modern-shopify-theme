@@ -15,9 +15,17 @@
           {%- elsif block.settings.image != blank -%}
             {{ block.settings.image | image_url: width: 1000 | image_tag: loading: 'lazy' }}
           {%- else -%}
-            {%- assign fallback_images = 'product-knit-sweater.png,product-amber-bottle.png,product-ceramic-mug.png,product-leather-notebook.png' | split: ',' -%}
-            {%- assign fallback_index = forloop.index0 | modulo: fallback_images.size -%}
-            {{ fallback_images[fallback_index] | asset_url | image_tag: loading: 'lazy' }}
+            {%- case forloop.index -%}
+              {%- when 1 -%}
+                {%- assign fallback_image = 'product-knit-sweater.png' -%}
+              {%- when 2 -%}
+                {%- assign fallback_image = 'product-amber-bottle.png' -%}
+              {%- when 3 -%}
+                {%- assign fallback_image = 'product-ceramic-mug.png' -%}
+              {%- else -%}
+                {%- assign fallback_image = 'product-leather-notebook.png' -%}
+            {%- endcase -%}
+            {{ fallback_image | asset_url | image_tag: loading: 'lazy' }}
           {%- endif -%}
           <div class="collection-card__content">
             <h3>{{ collection.title | default: block.settings.heading }}</h3>
