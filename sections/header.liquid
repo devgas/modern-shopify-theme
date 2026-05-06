@@ -1,0 +1,59 @@
+<header class="site-header">
+  <div class="site-header__inner page-width">
+    <button class="icon-button menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="MobileMenu" aria-label="{{ 'general.menu' | t }}">
+      {% render 'icon', icon: 'menu' %}
+    </button>
+
+    <nav class="site-nav desktop-nav" aria-label="Primary">
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+
+    <a class="site-header__logo" href="{{ routes.root_url }}">
+      {%- if section.settings.logo != blank -%}
+        {{ section.settings.logo | image_url: width: 240 | image_tag: widths: '120, 180, 240', alt: shop.name }}
+      {%- else -%}
+        {{ shop.name }}
+      {%- endif -%}
+    </a>
+
+    <div class="site-header__actions">
+      <a class="icon-button" href="{{ routes.search_url }}" aria-label="{{ 'general.search' | t }}">
+        {% render 'icon', icon: 'search' %}
+      </a>
+      <a class="icon-button" data-account-link href="{{ routes.account_url }}" aria-label="{{ 'general.account' | t }}">
+        {% render 'icon', icon: 'user' %}
+      </a>
+      <a class="icon-button" href="{{ routes.cart_url }}" data-cart-toggle aria-label="{{ 'general.cart' | t }}">
+        {% render 'icon', icon: 'bag' %}
+        <span class="visually-hidden">{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </div>
+
+  <nav id="MobileMenu" class="mobile-menu" data-mobile-menu aria-label="Mobile primary">
+    {%- for link in section.settings.menu.links -%}
+      <a href="{{ link.url }}">{{ link.title }}</a>
+    {%- endfor -%}
+  </nav>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

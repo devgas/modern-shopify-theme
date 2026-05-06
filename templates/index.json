@@ -1,0 +1,30 @@
+{
+  "sections": {
+    "hero": {
+      "type": "main-hero"
+    },
+    "featured_collection": {
+      "type": "featured-collection"
+    },
+    "collection_list": {
+      "type": "collection-list"
+    },
+    "image_with_text": {
+      "type": "image-with-text"
+    },
+    "feature_row": {
+      "type": "feature-row"
+    },
+    "newsletter": {
+      "type": "newsletter"
+    }
+  },
+  "order": [
+    "hero",
+    "featured_collection",
+    "collection_list",
+    "image_with_text",
+    "feature_row",
+    "newsletter"
+  ]
+}

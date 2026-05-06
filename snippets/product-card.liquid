@@ -1,0 +1,24 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+<article class="product-card">
+  <div class="product-card__media">
+    <a href="{{ product.url }}" aria-label="{{ product.title | escape }}">
+      {%- if product.featured_media -%}
+        {{ product.featured_media | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 25vw, 50vw', widths: '320, 480, 640, 900' }}
+      {%- endif -%}
+    </a>
+    {%- if product.compare_at_price > product.price -%}
+      <span class="product-card__badge">{{ 'products.product.sale' | t }}</span>
+    {%- elsif product.available == false -%}
+      <span class="product-card__badge">{{ 'products.product.sold_out' | t }}</span>
+    {%- endif -%}
+    {%- if product.available and current_variant -%}
+      <button class="button button--full product-card__quick" data-quick-add data-variant-id="{{ current_variant.id }}">
+        {{ 'products.product.add_to_cart' | t }}
+      </button>
+    {%- endif -%}
+  </div>
+  <div class="product-card__body">
+    <a class="product-card__title" href="{{ product.url }}">{{ product.title }}</a>
+    {% render 'price', product: product %}
+  </div>
+</article>

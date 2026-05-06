@@ -1,0 +1,29 @@
+<section class="section newsletter">
+  <div class="newsletter__inner page-width">
+    <div>
+      <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2>{{ section.settings.heading }}</h2>
+      <p>{{ section.settings.text }}</p>
+    </div>
+    {%- form 'customer' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <div class="field">
+        <label class="visually-hidden" for="NewsletterEmail">{{ 'general.newsletter' | t }}</label>
+        <input id="NewsletterEmail" type="email" name="contact[email]" placeholder="{{ 'general.newsletter' | t }}" required>
+        <button class="button" type="submit">{{ 'general.subscribe' | t }}</button>
+      </div>
+    {%- endform -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Stay close" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Get the next drop first" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Send customers launches, stories, and limited offers." }
+  ],
+  "presets": [{ "name": "Newsletter" }]
+}
+{% endschema %}

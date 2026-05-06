@@ -1,0 +1,36 @@
+<section class="section">
+  <div class="feature-row page-width">
+    {%- for block in section.blocks -%}
+      <div class="feature-row__item" {{ block.shopify_attributes }}>
+        <h3>{{ block.settings.heading }}</h3>
+        <p>{{ block.settings.text }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Feature row",
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Fast checkout" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "A focused buying path from product discovery to payment." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature row",
+      "blocks": [
+        { "type": "feature" },
+        { "type": "feature", "settings": { "heading": "Mobile first" } },
+        { "type": "feature", "settings": { "heading": "Editorial-ready" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

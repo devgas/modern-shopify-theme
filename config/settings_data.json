@@ -1,0 +1,12 @@
+{
+  "current": {
+    "color_background": "#f7f4ee",
+    "color_text": "#181713",
+    "color_muted": "#6a665d",
+    "color_surface": "#ffffff",
+    "color_accent": "#0f766e",
+    "color_accent_text": "#ffffff",
+    "cart_drawer_enabled": true,
+    "free_shipping_text": "Free shipping on orders over $75"
+  }
+}

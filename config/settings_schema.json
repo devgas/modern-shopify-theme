@@ -1,0 +1,76 @@
+[
+  {
+    "name": "Theme style",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Background",
+        "default": "#f7f4ee"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Text",
+        "default": "#181713"
+      },
+      {
+        "type": "color",
+        "id": "color_muted",
+        "label": "Muted text",
+        "default": "#6a665d"
+      },
+      {
+        "type": "color",
+        "id": "color_surface",
+        "label": "Surface",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent",
+        "default": "#0f766e"
+      },
+      {
+        "type": "color",
+        "id": "color_accent_text",
+        "label": "Accent text",
+        "default": "#ffffff"
+      },
+      {
+        "type": "select",
+        "id": "font_body",
+        "label": "Body font",
+        "default": "system",
+        "options": [
+          { "value": "system", "label": "System" },
+          { "value": "serif", "label": "Serif" },
+          { "value": "mono", "label": "Mono" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "cart_drawer_enabled",
+        "label": "Enable cart drawer",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "free_shipping_text",
+        "label": "Cart message",
+        "default": "Free shipping on orders over $75"
+      }
+    ]
+  }
+]

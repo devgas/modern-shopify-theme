@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product"
+    },
+    "related": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "You may also like",
+        "heading": "More to explore",
+        "text": "Keep customers moving through the catalog."
+      }
+    }
+  },
+  "order": [
+    "main",
+    "related"
+  ]
+}

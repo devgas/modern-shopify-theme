@@ -1,0 +1,66 @@
+<section class="product page-width">
+  <div class="product-media">
+    {%- for media in product.media -%}
+      <div class="product-media__item">
+        {{ media | image_url: width: 1200 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 34vw, 100vw', widths: '500, 800, 1200' }}
+      </div>
+    {%- else -%}
+      <div class="product-media__item">{{ 'product-1' | placeholder_svg_tag }}</div>
+    {%- endfor -%}
+  </div>
+
+  <div class="product-info">
+    <p class="eyebrow">{{ product.vendor }}</p>
+    <h1>{{ product.title }}</h1>
+    <div class="product-info__price">{% render 'price', product: product %}</div>
+
+    {%- form 'product', product, class: 'product-form' -%}
+      {%- unless product.has_only_default_variant -%}
+        <div>
+          <label for="VariantSelect">{{ product.options_with_values.first.name }}</label>
+          <select id="VariantSelect" name="id">
+            {%- for variant in product.variants -%}
+              <option
+                value="{{ variant.id }}"
+                {% if variant == product.selected_or_first_available_variant %}selected{% endif %}
+                {% unless variant.available %}disabled{% endunless %}
+              >
+                {{ variant.title }} - {{ variant.price | money }}
+              </option>
+            {%- endfor -%}
+          </select>
+        </div>
+      {%- else -%}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      {%- endunless -%}
+
+      <div>
+        <label for="Quantity">{{ 'products.product.quantity' | t }}</label>
+        <input class="quantity-input" id="Quantity" type="number" name="quantity" value="1" min="1">
+      </div>
+
+      <button class="button button--full" type="submit" {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}>
+        {%- if product.selected_or_first_available_variant.available -%}
+          {{ 'products.product.add_to_cart' | t }}
+        {%- else -%}
+          {{ 'products.product.sold_out' | t }}
+        {%- endif -%}
+      </button>
+      {{ form | payment_button }}
+    {%- endform -%}
+
+    {%- if product.description != blank -%}
+      <div class="rte">
+        <h2>{{ 'products.product.description' | t }}</h2>
+        {{ product.description }}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main product",
+  "settings": []
+}
+{% endschema %}

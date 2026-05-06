@@ -1,0 +1,32 @@
+<section class="section">
+  <div class="image-with-text page-width">
+    <div class="image-with-text__media">
+      {%- if section.settings.image != blank -%}
+        {{ section.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '700, 1000, 1400' }}
+      {%- endif -%}
+    </div>
+    <div class="image-with-text__text">
+      <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2>{{ section.settings.heading }}</h2>
+      <p>{{ section.settings.text }}</p>
+      {%- if section.settings.button_label != blank -%}
+        <a class="button" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Image with text",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Built for conversion" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Sharp product storytelling" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Use rich imagery and short focused copy to explain why the product matters without slowing the path to purchase." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Read more" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "presets": [{ "name": "Image with text" }]
+}
+{% endschema %}

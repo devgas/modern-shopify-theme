@@ -1,0 +1,20 @@
+<section class="section">
+  <div class="page-width">
+    <h1 class="page-title">Account login</h1>
+    {%- form 'customer_login', class: 'contact-form' -%}
+      {{ form.errors | default_errors }}
+      <label for="CustomerEmail">Email</label>
+      <input id="CustomerEmail" type="email" name="customer[email]" autocomplete="email">
+      <label for="CustomerPassword">Password</label>
+      <input id="CustomerPassword" type="password" name="customer[password]" autocomplete="current-password">
+      <button class="button" type="submit">Sign in</button>
+    {%- endform -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main login",
+  "settings": []
+}
+{% endschema %}

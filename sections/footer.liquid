@@ -1,0 +1,56 @@
+<footer class="site-footer">
+  <div class="site-footer__grid page-width">
+    <div>
+      <h2>{{ shop.name }}</h2>
+      <p>{{ section.settings.text }}</p>
+    </div>
+    {%- for block in section.blocks -%}
+      <div {{ block.shopify_attributes }}>
+        <h3>{{ block.settings.heading }}</h3>
+        {%- for link in block.settings.menu.links -%}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {%- endfor -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Designed for considered products, sharp merchandising, and fast checkout."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Shop"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "menu" },
+      { "type": "menu", "settings": { "heading": "Support" } },
+      { "type": "menu", "settings": { "heading": "Company" } }
+    ]
+  }
+}
+{% endschema %}

@@ -1,0 +1,32 @@
+<section class="section">
+  <div class="page-width">
+    <h1 class="page-title">{{ customer.name | default: 'Account' }}</h1>
+    <div class="feature-row">
+      <div class="feature-row__item">
+        <h3>Orders</h3>
+        {%- if customer.orders.size > 0 -%}
+          {%- for order in customer.orders -%}
+            <p><a href="{{ order.customer_url }}">{{ order.name }}</a> - {{ order.total_price | money }}</p>
+          {%- endfor -%}
+        {%- else -%}
+          <p>No orders yet.</p>
+        {%- endif -%}
+      </div>
+      <div class="feature-row__item">
+        <h3>Address</h3>
+        <p>{{ customer.default_address | format_address }}</p>
+      </div>
+      <div class="feature-row__item">
+        <h3>Session</h3>
+        <p><a href="{{ routes.account_logout_url }}">Log out</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main account",
+  "settings": []
+}
+{% endschema %}

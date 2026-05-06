@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main": {
+      "type": "collection-list",
+      "settings": {
+        "eyebrow": "All collections",
+        "heading": "Shop the edits"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
