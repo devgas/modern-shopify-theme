@@ -20,12 +20,18 @@
           {% render 'product-card', product: product %}
         {%- endfor -%}
       {%- else -%}
-        {%- for i in (1..4) -%}
+        {%- assign demo_images = 'product-knit-sweater.png,product-amber-bottle.png,product-ceramic-mug.png,product-leather-notebook.png' | split: ',' -%}
+        {%- assign demo_titles = 'Ribbed knit sweater,Amber hand wash,Ceramic coffee mug,Leather notebook' | split: ',' -%}
+        {%- assign demo_prices = '$128.00,$34.00,$28.00,$74.00' | split: ',' -%}
+        {%- for image in demo_images -%}
+          {%- assign index = forloop.index0 -%}
           <article class="product-card">
-            <div class="product-card__media">{{ 'product-' | append: i | placeholder_svg_tag }}</div>
+            <div class="product-card__media">
+              {{ image | asset_url | image_tag: loading: 'lazy' }}
+            </div>
             <div class="product-card__body">
-              <span class="product-card__title">Product title</span>
-              <span class="price">$48.00</span>
+              <span class="product-card__title">{{ demo_titles[index] }}</span>
+              <span class="price">{{ demo_prices[index] }}</span>
             </div>
           </article>
         {%- endfor -%}
