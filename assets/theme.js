@@ -59,8 +59,9 @@ async function addVariantToCart(button) {
   if (!variantId) return;
 
   button.disabled = true;
-  const originalText = button.textContent;
-  button.textContent = button.getAttribute('data-adding-label') || 'Adding...';
+  const originalLabel = button.getAttribute('aria-label');
+  button.setAttribute('aria-label', button.getAttribute('data-adding-label') || 'Adding...');
+  button.classList.add('is-loading');
 
   try {
     const response = await fetch('/cart/add.js', {
@@ -72,9 +73,12 @@ async function addVariantToCart(button) {
     if (!response.ok) throw new Error('Cart add failed');
     window.location.href = '/cart';
   } catch (error) {
-    button.textContent = button.getAttribute('data-error-label') || 'Try again';
+    button.setAttribute('aria-label', button.getAttribute('data-error-label') || 'Try again');
+    button.classList.remove('is-loading');
+    button.classList.add('has-error');
     window.setTimeout(() => {
-      button.textContent = originalText;
+      if (originalLabel) button.setAttribute('aria-label', originalLabel);
+      button.classList.remove('has-error');
       button.disabled = false;
     }, 1800);
   }

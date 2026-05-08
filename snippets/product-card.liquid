@@ -18,14 +18,15 @@
         class="button product-card__quick"
         data-quick-add
         data-variant-id="{{ current_variant.id }}"
+        aria-label="{{ 'products.product.add_to_cart' | t | escape }}"
         data-adding-label="{{ 'products.product.adding' | t | escape }}"
         data-error-label="{{ 'products.product.try_again' | t | escape }}"
       >
-        {{ 'products.product.add_to_cart' | t }}
+        {% render 'icon', icon: 'bag' %}
       </button>
     {%- elsif product.available == false -%}
-      <button class="button product-card__quick product-card__quick--disabled" type="button" disabled>
-        {{ 'products.product.sold_out' | t }}
+      <button class="button product-card__quick product-card__quick--disabled" type="button" disabled aria-label="{{ 'products.product.sold_out' | t | escape }}">
+        {% render 'icon', icon: 'bag' %}
       </button>
     {%- endif -%}
   </div>
