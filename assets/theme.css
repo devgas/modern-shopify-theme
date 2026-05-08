@@ -323,12 +323,17 @@ button { cursor: pointer; }
   transition: transform .2s ease, box-shadow .2s ease;
 }
 
+.product-card__quick:hover {
+  transform: translateX(-50%) translateY(-1px);
+}
+
 .product-card__quick--disabled,
 .product-card__quick--disabled:hover {
   border-color: rgba(24, 23, 19, .14);
   background: rgba(255, 255, 255, .92);
   color: var(--color-muted);
   box-shadow: none;
+  transform: translateX(-50%);
   cursor: not-allowed;
 }
 
