@@ -1,13 +1,13 @@
 <section class="section">
   <div class="page-width">
-    <h1 class="page-title">Account login</h1>
+    <h1 class="page-title">{{ 'customer.login.title' | t }}</h1>
     {%- form 'customer_login', class: 'contact-form' -%}
       {{ form.errors | default_errors }}
-      <label for="CustomerEmail">Email</label>
+      <label for="CustomerEmail">{{ 'customer.login.email' | t }}</label>
       <input id="CustomerEmail" type="email" name="customer[email]" autocomplete="email">
-      <label for="CustomerPassword">Password</label>
+      <label for="CustomerPassword">{{ 'customer.login.password' | t }}</label>
       <input id="CustomerPassword" type="password" name="customer[password]" autocomplete="current-password">
-      <button class="button" type="submit">Sign in</button>
+      <button class="button" type="submit">{{ 'customer.login.submit' | t }}</button>
     {%- endform -%}
   </div>
 </section>

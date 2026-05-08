@@ -4,7 +4,7 @@
       {% render 'icon', icon: 'menu' %}
     </button>
 
-    <nav class="site-nav desktop-nav" aria-label="Primary">
+    <nav class="site-nav desktop-nav" aria-label="{{ 'navigation.primary' | t }}">
       {%- for link in section.settings.menu.links -%}
         <a href="{{ link.url }}">{{ link.title }}</a>
       {%- endfor -%}
@@ -32,7 +32,7 @@
     </div>
   </div>
 
-  <nav id="MobileMenu" class="mobile-menu" data-mobile-menu aria-label="Mobile primary">
+  <nav id="MobileMenu" class="mobile-menu" data-mobile-menu aria-label="{{ 'navigation.mobile_primary' | t }}">
     {%- for link in section.settings.menu.links -%}
       <a href="{{ link.url }}">{{ link.title }}</a>
     {%- endfor -%}

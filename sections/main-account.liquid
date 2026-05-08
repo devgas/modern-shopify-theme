@@ -1,24 +1,25 @@
 <section class="section">
   <div class="page-width">
-    <h1 class="page-title">{{ customer.name | default: 'Account' }}</h1>
+    {%- assign account_title = 'general.account' | t -%}
+    <h1 class="page-title">{{ customer.name | default: account_title }}</h1>
     <div class="feature-row">
       <div class="feature-row__item">
-        <h3>Orders</h3>
+        <h3>{{ 'customer.account.orders' | t }}</h3>
         {%- if customer.orders.size > 0 -%}
           {%- for order in customer.orders -%}
             <p><a href="{{ order.customer_url }}">{{ order.name }}</a> - {{ order.total_price | money }}</p>
           {%- endfor -%}
         {%- else -%}
-          <p>No orders yet.</p>
+          <p>{{ 'customer.account.no_orders' | t }}</p>
         {%- endif -%}
       </div>
       <div class="feature-row__item">
-        <h3>Address</h3>
+        <h3>{{ 'customer.account.address' | t }}</h3>
         <p>{{ customer.default_address | format_address }}</p>
       </div>
       <div class="feature-row__item">
-        <h3>Session</h3>
-        <p><a href="{{ routes.account_logout_url }}">Log out</a></p>
+        <h3>{{ 'customer.account.session' | t }}</h3>
+        <p><a href="{{ routes.account_logout_url }}">{{ 'customer.account.logout' | t }}</a></p>
       </div>
     </div>
   </div>

@@ -7,7 +7,12 @@ const selectors = {
   cartToggle: '[data-cart-toggle]',
   cartDrawer: '[data-cart-drawer]',
   cartClose: '[data-cart-close]',
-  quickAdd: '[data-quick-add]'
+  quickAdd: '[data-quick-add]',
+  productForm: '[data-product-form]',
+  productVariants: '[data-product-variants]',
+  optionSelect: '[data-option-select]',
+  variantInput: '[data-variant-input]',
+  productSubmit: '[data-product-submit]'
 };
 
 document.addEventListener('click', async (event) => {
@@ -39,13 +44,23 @@ document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') closeCartDrawer();
 });
 
+document.addEventListener('change', (event) => {
+  const optionSelect = event.target.closest(selectors.optionSelect);
+  if (!optionSelect) return;
+
+  const form = optionSelect.closest(selectors.productForm);
+  if (form) updateSelectedVariant(form);
+});
+
+document.querySelectorAll(selectors.productForm).forEach(updateSelectedVariant);
+
 async function addVariantToCart(button) {
   const variantId = button.getAttribute('data-variant-id');
   if (!variantId) return;
 
   button.disabled = true;
   const originalText = button.textContent;
-  button.textContent = 'Adding...';
+  button.textContent = button.getAttribute('data-adding-label') || 'Adding...';
 
   try {
     const response = await fetch('/cart/add.js', {
@@ -57,12 +72,47 @@ async function addVariantToCart(button) {
     if (!response.ok) throw new Error('Cart add failed');
     window.location.href = '/cart';
   } catch (error) {
-    button.textContent = 'Try again';
+    button.textContent = button.getAttribute('data-error-label') || 'Try again';
     window.setTimeout(() => {
       button.textContent = originalText;
       button.disabled = false;
     }, 1800);
   }
+}
+
+function updateSelectedVariant(form) {
+  const variantsScript = form.querySelector(selectors.productVariants);
+  const variantInput = form.querySelector(selectors.variantInput);
+  const submit = form.querySelector(selectors.productSubmit);
+  if (!variantsScript || !variantInput || !submit) return;
+
+  let variants = [];
+  try {
+    variants = JSON.parse(variantsScript.textContent);
+  } catch (error) {
+    return;
+  }
+
+  const selectedOptions = Array.from(form.querySelectorAll(selectors.optionSelect)).map((select) => select.value);
+  const selectedVariant = variants.find((variant) => {
+    return variant.options.length === selectedOptions.length
+      && variant.options.every((option, index) => option === selectedOptions[index]);
+  });
+
+  const addLabel = submit.getAttribute('data-add-label') || submit.textContent;
+  const soldOutLabel = submit.getAttribute('data-sold-out-label') || submit.textContent;
+  const unavailableLabel = submit.getAttribute('data-unavailable-label') || soldOutLabel;
+
+  if (!selectedVariant) {
+    variantInput.value = '';
+    submit.disabled = true;
+    submit.textContent = unavailableLabel;
+    return;
+  }
+
+  variantInput.value = String(selectedVariant.id);
+  submit.disabled = !selectedVariant.available;
+  submit.textContent = selectedVariant.available ? addLabel : soldOutLabel;
 }
 
 function openCartDrawer() {

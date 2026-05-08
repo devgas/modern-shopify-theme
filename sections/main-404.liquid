@@ -1,8 +1,8 @@
 <section class="section">
   <div class="page-width">
-    <h1 class="page-title">Page not found</h1>
-    <p class="empty-state">The page you are looking for does not exist.</p>
-    <a class="button" href="{{ routes.root_url }}">Go home</a>
+    <h1 class="page-title">{{ 'templates.404.title' | t }}</h1>
+    <p class="empty-state">{{ 'templates.404.text' | t }}</p>
+    <a class="button" href="{{ routes.root_url }}">{{ 'templates.404.button' | t }}</a>
   </div>
 </section>
 

@@ -8,7 +8,7 @@
 
     {%- if search.performed -%}
       <div class="section-heading">
-        <p>{{ search.results_count }} results for "{{ search.terms }}"</p>
+        <p>{{ 'search.general.results_with_count' | t: count: search.results_count, terms: search.terms }}</p>
       </div>
       <div class="product-grid">
         {%- for item in search.results -%}
@@ -16,7 +16,7 @@
             {% render 'product-card', product: item %}
           {%- endif -%}
         {%- else -%}
-          <p class="empty-state">No results found.</p>
+          <p class="empty-state">{{ 'search.general.empty' | t }}</p>
         {%- endfor -%}
       </div>
     {%- endif -%}

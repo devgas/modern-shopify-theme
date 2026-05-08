@@ -1,21 +1,22 @@
 <section class="section">
   <div class="page-width">
-    <h1 class="page-title">{{ page.title | default: 'Contact' }}</h1>
+    {%- assign contact_title = 'contact.form.title' | t -%}
+    <h1 class="page-title">{{ page.title | default: contact_title }}</h1>
     {%- if page.content != blank -%}
       <div class="rte">{{ page.content }}</div>
     {%- endif -%}
     {%- form 'contact', class: 'contact-form' -%}
       {{ form.errors | default_errors }}
       {%- if form.posted_successfully? -%}
-        <p>Thanks. We received your message.</p>
+        <p>{{ 'contact.form.success' | t }}</p>
       {%- endif -%}
-      <label for="ContactName">Name</label>
+      <label for="ContactName">{{ 'contact.form.name' | t }}</label>
       <input id="ContactName" type="text" name="contact[name]" autocomplete="name">
-      <label for="ContactEmail">Email</label>
+      <label for="ContactEmail">{{ 'contact.form.email' | t }}</label>
       <input id="ContactEmail" type="email" name="contact[email]" autocomplete="email" required>
-      <label for="ContactMessage">Message</label>
+      <label for="ContactMessage">{{ 'contact.form.message' | t }}</label>
       <textarea id="ContactMessage" name="contact[body]" rows="7"></textarea>
-      <button class="button" type="submit">Send message</button>
+      <button class="button" type="submit">{{ 'contact.form.submit' | t }}</button>
     {%- endform -%}
   </div>
 </section>

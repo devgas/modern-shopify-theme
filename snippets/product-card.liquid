@@ -14,7 +14,13 @@
       <span class="product-card__badge">{{ 'products.product.sold_out' | t }}</span>
     {%- endif -%}
     {%- if product.available and current_variant -%}
-      <button class="button product-card__quick" data-quick-add data-variant-id="{{ current_variant.id }}">
+      <button
+        class="button product-card__quick"
+        data-quick-add
+        data-variant-id="{{ current_variant.id }}"
+        data-adding-label="{{ 'products.product.adding' | t | escape }}"
+        data-error-label="{{ 'products.product.try_again' | t | escape }}"
+      >
         {{ 'products.product.add_to_cart' | t }}
       </button>
     {%- elsif product.available == false -%}

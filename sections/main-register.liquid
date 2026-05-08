@@ -1,17 +1,17 @@
 <section class="section">
   <div class="page-width">
-    <h1 class="page-title">Create account</h1>
+    <h1 class="page-title">{{ 'customer.register.title' | t }}</h1>
     {%- form 'create_customer', class: 'contact-form' -%}
       {{ form.errors | default_errors }}
-      <label for="FirstName">First name</label>
+      <label for="FirstName">{{ 'customer.register.first_name' | t }}</label>
       <input id="FirstName" type="text" name="customer[first_name]" autocomplete="given-name">
-      <label for="LastName">Last name</label>
+      <label for="LastName">{{ 'customer.register.last_name' | t }}</label>
       <input id="LastName" type="text" name="customer[last_name]" autocomplete="family-name">
-      <label for="RegisterEmail">Email</label>
+      <label for="RegisterEmail">{{ 'customer.register.email' | t }}</label>
       <input id="RegisterEmail" type="email" name="customer[email]" autocomplete="email">
-      <label for="RegisterPassword">Password</label>
+      <label for="RegisterPassword">{{ 'customer.register.password' | t }}</label>
       <input id="RegisterPassword" type="password" name="customer[password]" autocomplete="new-password">
-      <button class="button" type="submit">Create</button>
+      <button class="button" type="submit">{{ 'customer.register.submit' | t }}</button>
     {%- endform -%}
   </div>
 </section>

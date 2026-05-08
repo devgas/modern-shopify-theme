@@ -6,9 +6,9 @@
     {%- endif -%}
 
     <div class="collection-toolbar">
-      <span>{{ collection.products_count }} products</span>
+      <span>{{ 'collections.general.product_count' | t: count: collection.products_count }}</span>
       <form>
-        <label class="visually-hidden" for="SortBy">Sort</label>
+        <label class="visually-hidden" for="SortBy">{{ 'collections.general.sort' | t }}</label>
         <select id="SortBy" name="sort_by" onchange="this.form.submit()">
           {%- for option in collection.sort_options -%}
             <option value="{{ option.value }}" {% if option.value == collection.sort_by %}selected{% endif %}>{{ option.name }}</option>
@@ -22,7 +22,7 @@
         {%- for product in collection.products -%}
           {% render 'product-card', product: product %}
         {%- else -%}
-          <p class="empty-state">No products found.</p>
+          <p class="empty-state">{{ 'collections.general.empty' | t }}</p>
         {%- endfor -%}
       </div>
 
