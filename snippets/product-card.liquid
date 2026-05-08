@@ -4,6 +4,8 @@
     <a href="{{ product.url }}" aria-label="{{ product.title | escape }}">
       {%- if product.featured_media -%}
         {{ product.featured_media | image_url: width: 900 | image_tag: loading: 'lazy', sizes: '(min-width: 990px) 25vw, 50vw', widths: '320, 480, 640, 900' }}
+      {%- else -%}
+        <img src="{{ 'product-leather-notebook.png' | asset_url }}" alt="{{ product.title | escape }}" width="1254" height="1254" loading="lazy">
       {%- endif -%}
     </a>
     {%- if product.compare_at_price > product.price -%}
@@ -14,6 +16,10 @@
     {%- if product.available and current_variant -%}
       <button class="button button--full product-card__quick" data-quick-add data-variant-id="{{ current_variant.id }}">
         {{ 'products.product.add_to_cart' | t }}
+      </button>
+    {%- elsif product.available == false -%}
+      <button class="button button--full product-card__quick product-card__quick--disabled" type="button" disabled>
+        {{ 'products.product.sold_out' | t }}
       </button>
     {%- endif -%}
   </div>
