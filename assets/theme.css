@@ -310,14 +310,15 @@ button { cursor: pointer; }
 
 .product-card__quick {
   position: absolute;
-  left: 12px;
-  right: 12px;
+  left: 50%;
   bottom: 12px;
+  width: auto;
   min-height: 44px;
   padding: 10px 14px;
   font-size: 14px;
+  white-space: nowrap;
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(-50%);
   box-shadow: 0 8px 20px rgba(15, 118, 110, .18);
   transition: transform .2s ease, box-shadow .2s ease;
 }
