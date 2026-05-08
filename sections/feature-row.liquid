@@ -1,7 +1,7 @@
 <section class="section">
   <div class="feature-row page-width">
     {%- for block in section.blocks -%}
-      <div class="feature-row__item" {{ block.shopify_attributes }}>
+      <div class="feature-row__item" style="--feature-index: '{{ forloop.index }}'" {{ block.shopify_attributes }}>
         <h3>{{ block.settings.heading }}</h3>
         <p>{{ block.settings.text }}</p>
       </div>

@@ -29,6 +29,7 @@
           {%- endif -%}
           <div class="collection-card__content">
             <h3>{{ collection.title | default: block.settings.heading }}</h3>
+            <span>Shop now {% render 'icon', icon: 'arrow' %}</span>
           </div>
         </a>
       {%- endfor -%}
